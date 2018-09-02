@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_shape"
+    tools:context=".SignActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="38dp"
+        android:layout_marginTop="46dp"
+        android:src="@drawable/pine_white_sign"
+        app:layout_constraintBottom_toTopOf="@+id/textSignMain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textSignMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:width="210dp"
+        android:height="145dp"
+        android:lineSpacingMultiplier="1"
+        android:text="@string/signStartStr"
+        android:textColor="#FFFFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignIn_signActivity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+
+    <Button
+        android:id="@+id/btnSignIn_signActivity"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp"
+        android:background="@drawable/btn_sign"
+        android:lineSpacingMultiplier="1.20"
+        android:text="@string/signSignInStr"
+        android:textAllCaps="false"
+        android:textColor="#FF15CEE1"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/textSignMain" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginRight="34dp"
+        android:layout_marginStart="34dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignIn_signActivity">
+
+        <TextView
+            android:id="@+id/textHaveAlready"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="198dp"
+            android:height="23dp"
+            android:lineSpacingMultiplier="1.19"
+            android:text="@string/signHaveStr"
+            android:textColor="#FFC3EEFF"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout2" />
+
+        <Button
+            android:id="@+id/btnLogIn_signActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:height="19dp"
+            android:layout_marginStart="200dp"
+            android:background="@null"
+            android:gravity="left|center_vertical"
+            android:lineSpacingMultiplier="1.19"
+            android:text="@string/signLogInStr"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textHaveAlready"
+            app:layout_constraintStart_toStartOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>

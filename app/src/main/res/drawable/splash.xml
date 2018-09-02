@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Разметка для заставки -->
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape
+            android:shape="rectangle"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+            <gradient
+                android:angle="180"
+                android:endColor="#FF0FC9E5"
+                android:startColor="#FF3FF0C8"
+                android:type="linear" />
+            <size
+                android:height="643dp"
+                android:width="362dp" />
+        </shape>
+    </item>
+
+    <item
+        android:drawable="@drawable/pine_white_splash"
+        android:gravity="center"/>
+</layer-list>
