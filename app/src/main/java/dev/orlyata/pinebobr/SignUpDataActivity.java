@@ -30,7 +30,7 @@ public class SignUpDataActivity extends AppCompatActivity {
 
     /* Server option */
     SocketThread socketThread;
-    private final String server = "ws://104.248.27.91:8080";
+    private final String server = "ws://51.15.97.72:8080";
     private final int timeout = 50000;
 
     Context context;
@@ -65,7 +65,7 @@ public class SignUpDataActivity extends AppCompatActivity {
                 password = inputPassword.getText().toString();
                 if((!email.equals(""))&&(!login.equals(""))&&(!password.equals(""))){
                     Log.d("Socket", "Sign Up");
-                    socketThread = new SocketThread(server, timeout, handler, getApplication());
+                    socketThread = new SocketThread(server, timeout, handler, getApplication(), context);
                     Registration registration = new Registration(name, email, login, password, password);
                     if(registration.generateMsg()){
                         Log.d("Socket", "Generate msg success");

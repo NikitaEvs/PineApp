@@ -506,7 +506,7 @@ public class DayActivity extends AppCompatActivity {
         User lastUser = users.get(users.size()-1);
         Authentication authentication = new Authentication(lastUser.getLogin(), lastUser.getPassword(), getApplication());
         Log.d("Socket", "Start connection");
-        socketThread = new SocketThread(handler, getApplication());
+        socketThread = new SocketThread(handler, getApplication(), this);
         socketThread.setAuthentication(authentication);
         socketThread.setConnect(true);
         socketThread.execute();

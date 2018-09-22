@@ -14,7 +14,7 @@ import java.util.List;
 
 public class SplashScreen extends AppCompatActivity {
     Handler handler;
-    SocketThread socketThread = new SocketThread(getApplication());
+    SocketThread socketThread = new SocketThread(getApplication(), this);
     List<User> users;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

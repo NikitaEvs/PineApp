@@ -1,12 +1,15 @@
 package dev.orlyata.pinebobr;
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class ProcessMessage {
@@ -26,6 +29,7 @@ public class ProcessMessage {
     private boolean haveRegResp = false;
     private Authentication authentication;
     private Application application;
+    private Context context;
     private int val;
 
     public ProcessMessage(String messageIn, Application application){
@@ -38,8 +42,9 @@ public class ProcessMessage {
         }
     }
 
-    public ProcessMessage(Application application){
+    public ProcessMessage(Application application, Context context){
         this.application = application;
+        this.context = context;
     }
 
 
@@ -75,6 +80,7 @@ public class ProcessMessage {
                 Log.d("Socket", "Take data from server");
                 val = Integer.parseInt(data.getString("val"));
                 authentication.setVal(val);
+                JSONObject deviceList = new JSONObject(getJSONfromFile());
                 JSONArray typesJA = data.getJSONArray("types");
                 JSONArray valuesJA = data.getJSONArray("values");
                 String timestamp = data.getString("timestamp");
@@ -86,7 +92,7 @@ public class ProcessMessage {
                 double allValuesD = Integer.parseInt(valuesJA.getString(0))*0.22;
                 int allValues = (int) allValuesD;
                 for (int i = 0; i < typesJA.length(); i++) {
-                    Log.d("Socket", "In type: " + typesJA.getInt(i));
+                    /*Log.d("Socket", "In type: " + typesJA.getInt(i));
                     switch (typesJA.getInt(i)){
                         case 0:
                             types.add("null");
@@ -199,6 +205,16 @@ public class ProcessMessage {
                             values.add((int)(allValuesD*0.091));
                             values.add((int)(allValuesD*0.2834));
                             break;
+                    }*/
+
+                    JSONObject currentVariable = deviceList.getJSONObject(typesJA.getInt(i)+"");
+                    JSONArray typesFromJSON = currentVariable.getJSONArray("types");
+                    JSONArray valuesFromJSON = currentVariable.getJSONArray("values");
+                    for (int j = 0; j < typesFromJSON.length(); j++) {
+                        types.add(typesFromJSON.getString(j));
+                    }
+                    for (int j = 0; j < valuesFromJSON.length(); j++) {
+                        values.add((int)(valuesFromJSON.getDouble(j)*allValuesD));
                     }
                 }
                 Refactor refactor = new Refactor(types, values);
@@ -218,6 +234,22 @@ public class ProcessMessage {
                 }
                 break;
         }
+    }
+
+    public String getJSONfromFile(){
+        String out = null;
+        try{
+            InputStream input = context.getAssets().open("devices.json");
+            int size = input.available();
+            byte[] buffer = new byte[size];
+            input.read(buffer);
+            input.close();
+            out = new String(buffer, "UTF-8");
+        } catch (IOException e){
+            e.printStackTrace();
+            return null;
+        }
+        return out;
     }
 
     public void updateDatabase(String types, String values, String timestamp, int val){

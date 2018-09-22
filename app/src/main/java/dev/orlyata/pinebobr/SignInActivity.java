@@ -33,7 +33,7 @@ public class SignInActivity extends AppCompatActivity {
 
     /* Server option */
     SocketThread socketThread;
-    private final String server = "ws://104.248.27.91:8080";
+    private final String server = "ws://51.15.97.72:8080";
     private final int timeout = 50000;
 
     String login;
@@ -68,7 +68,7 @@ public class SignInActivity extends AppCompatActivity {
                 if((!login.equals(""))&&(!password.equals(""))){
                     Authentication authentication = new Authentication(login, password, getApplication());
                     Log.d("Socket", "Start connection");
-                    socketThread = new SocketThread(server, timeout, handler, getApplication());
+                    socketThread = new SocketThread(server, timeout, handler, getApplication(), context);
                     socketThread.setAuthentication(authentication);
                     socketThread.setConnect(true);
                     socketThread.execute();

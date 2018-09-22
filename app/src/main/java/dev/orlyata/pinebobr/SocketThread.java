@@ -1,6 +1,7 @@
 package dev.orlyata.pinebobr;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,7 +20,7 @@ import java.io.IOException;
 
 
 public class SocketThread extends AsyncTask<Void, Void, Void> {
-    private final String serverT = "ws://104.248.27.91:8080"; //104.248.27.91
+    private final String serverT = "ws://51.15.97.72:8080"; //51.15.97.72
     private final int timeoutT = 50000;
     private String server;
     private int timeout;
@@ -31,30 +32,30 @@ public class SocketThread extends AsyncTask<Void, Void, Void> {
     private boolean connect = false;
     private String customMsgOut = "";
 
-    public SocketThread(String server, int timeout, Handler handler, Application application){
+    public SocketThread(String server, int timeout, Handler handler, Application application, Context context){
         this.server = server;
         this.timeout = timeout;
         this.handler = handler;
         this.application = application;
-        processMessage = new ProcessMessage(application);
+        processMessage = new ProcessMessage(application, context);
     }
 
-    public SocketThread(Application application) {
+    public SocketThread(Application application, Context context) {
         this.application = application;
-        processMessage = new ProcessMessage(application);
+        processMessage = new ProcessMessage(application, context);
     }
 
-    public SocketThread(String server, int timeout, Application application){
+    public SocketThread(String server, int timeout, Application application, Context context){
         this.server = server;
         this.timeout = timeout;
         this.application = application;
-        processMessage = new ProcessMessage(application);
+        processMessage = new ProcessMessage(application, context);
     }
 
-    public SocketThread(Handler handler, Application application) {
+    public SocketThread(Handler handler, Application application, Context context) {
         this.handler = handler;
         this.application = application;
-        processMessage = new ProcessMessage(application);
+        processMessage = new ProcessMessage(application, context);
     }
 
     @Override
